@@ -108,15 +108,17 @@ int main() {
 	 */
 
 	uint32_t nextTick = 0;
+	bool toggle = false;
 
 	while (1) {
 		if (systick_cnt > nextTick) {
 			nextTick += 20;
 
+			toggle = !toggle;
 
-			GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
+			//GPIO_ToggleBits(GPIOA, GPIO_Pin_5);
 			// This appears not to work in the emulator:
-			//GPIO_WriteBit(GPIOA, GPIO_Pin_5, toggle ? Bit_SET : Bit_RESET);
+			GPIO_WriteBit(GPIOA, GPIO_Pin_5, toggle ? Bit_SET : Bit_RESET);
 		}
 	}
 
